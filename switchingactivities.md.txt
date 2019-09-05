@@ -1,0 +1,120 @@
+#H1 Switching between Activities on Android Studio
+
+Make sure you've created two activities. (Ex: MainActivity and SecondActivity)
+
+#H2 STEPS
+
+- Create two buttons on each activity's xml file
+- Edit the java files
+
+In the MainActivity.java
+Call configureNextButton(), create the method.
+Should look something like this:
+
+Under 
+       setContentView(R.layout.activity_main);
+
+Looks like this 
+       configureNextButton();
+   }
+
+   private void configureNextButton() {
+       Button nextButton = (Button) findViewById(R.id.nextButton);
+       nextButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(MainActivity.this, SecondActivity.class));
+           }
+       });
+   }
+}
+
+In the SecondActivity.java
+Call configureBackButton(), create the method
+Should look something like this:
+
+Under      
+        setContentView(R.layout.activity_second);
+
+Looks like this
+       configureBackButton();
+   }
+
+   private void configureBackButton()
+   {
+       Button backButton = (Button) findViewById(R.id.backButton);
+       backButton.setOnClickListener(new View.OnClickListener()
+       {
+           @Override
+           public void onClick(View view) {
+               finish();
+           }
+       });
+   }
+}
+
+FULL CODE (template for if you haven't written any other code):
+
+#H3 MainActivity.java
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+
+       configureNextButton();
+   }
+
+   private void configureNextButton() {
+       Button nextButton = (Button) findViewById(R.id.nextButton);
+       nextButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(MainActivity.this, SecondActivity.class));
+           }
+       });
+   }
+}
+
+
+#H3 SecondActivity.java
+
+package com.example.wjc.jenstine;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class SecondActivity extends AppCompatActivity {
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_second);
+
+       configureBackButton();
+   }
+
+   private void configureBackButton()
+   {
+       Button backButton = (Button) findViewById(R.id.backButton);
+       backButton.setOnClickListener(new View.OnClickListener()
+       {
+           @Override
+           public void onClick(View view) {
+               finish();
+           }
+       });
+   }
+}
+
+
